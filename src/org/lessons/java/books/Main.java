@@ -1,5 +1,8 @@
 package org.lessons.java.books;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
@@ -35,9 +38,45 @@ public class Main {
 		}
 
 		sc.close();
-		System.out.println("Books: ");
-		for (int i = 0; i < books.length; i++) {
-			System.out.println("- " + books[i].getTitle());
+
+		FileWriter writer = null;
+		try {
+
+			writer = new FileWriter("./file.txt", true);
+
+			for (int i = 0; i < books.length; i++) {
+
+				writer.write(books[i].getTitle() + "\n");
+
+			}
+		} catch (IOException e) {
+
+			System.err.println("Error updating file: " + e.getMessage());
+		} finally {
+
+			try {
+				writer.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
+		
+		File readerFile = new File ("./file.txt");
+		Scanner reader = null;
+		
+		try {
+			reader = new Scanner(readerFile);
+			 while(reader.hasNextLine()) {
+				 String titleLine = reader.nextLine();
+				 System.out.println(titleLine);
+			 }
+		} catch (Exception e) {
+			System.out.println("Error reading file: " + e.getMessage());
+		} finally {
+			if(reader!= null) {
+				reader.close();
+			}
+		}
+
 	}
 }
