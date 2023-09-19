@@ -6,7 +6,7 @@ package org.lessons.java.books;
 		private String author; 
 		private String publisher; 
 		
-		public Book (String title, int pages, String author, String publisher) {
+		public Book (String title, int pages, String author, String publisher) throws Exception {
 			setTitle(title); 
 			setAuthor(author);
 			setPages(pages);
@@ -17,7 +17,10 @@ package org.lessons.java.books;
 			return title;
 		}
 
-		public void setTitle(String title) {
+		public void setTitle(String title) throws Exception{
+			if(title.isBlank()) {
+				throw new Exception("Title can't be empty");
+			}
 			this.title = title;
 		}
 
@@ -25,7 +28,10 @@ package org.lessons.java.books;
 			return pages;
 		}
 
-		public void setPages(int pages) {
+		public void setPages(int pages) throws Exception {
+			if(pages <= 0) {
+				throw new Exception("Pages can't be 0 or less");
+			}
 			this.pages = pages;
 		}
 
@@ -33,7 +39,10 @@ package org.lessons.java.books;
 			return author;
 		}
 
-		public void setAuthor(String author) {
+		public void setAuthor(String author) throws Exception {
+			if(author.isBlank()) {
+				throw new Exception("Author can't be empty");
+			}
 			this.author = author;
 		}
 
@@ -41,7 +50,10 @@ package org.lessons.java.books;
 			return publisher;
 		}
 
-		public void setPublisher(String publisher) {
+		public void setPublisher(String publisher) throws Exception {
+			if(publisher.isBlank()) {
+				throw new Exception("Publisher can't be empty");
+			}
 			this.publisher = publisher;
 		}
 		
