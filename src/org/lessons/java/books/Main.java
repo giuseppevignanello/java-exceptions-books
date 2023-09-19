@@ -7,9 +7,19 @@ import java.util.Scanner;
 
 public class Main {
 	public static void main(String[] args) {
+		int booksNumber = 0;
+		
 		Scanner sc = new Scanner(System.in);
-		System.out.println("How many books do you want to add?");
-		int booksNumber = Integer.parseInt(sc.nextLine());
+		while(booksNumber == 0) {
+		try {
+			System.out.print("How many books do you want to add?");
+			booksNumber = Integer.parseInt(sc.nextLine());
+		} catch (Exception e) {
+			booksNumber = 0;
+			System.out.println("Insert a number");
+		}
+		}
+		
 
 		Book[] books = new Book[booksNumber];
 
@@ -57,8 +67,10 @@ public class Main {
 			try {
 				writer.close();
 			} catch (IOException e) {
+				
 				e.printStackTrace();
 			}
+			
 		}
 		
 		File readerFile = new File ("./file.txt");
